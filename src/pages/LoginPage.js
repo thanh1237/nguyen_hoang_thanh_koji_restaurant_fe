@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Form, Button } from "react-bootstrap";
 import { Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import authActions from "../redux/actions/auth.actions";
@@ -46,12 +46,9 @@ const LoginPage = () => {
   if (role === "admin") return <Redirect to="/admin" />;
   if (isAuthenticated && role !== "admin") return <Redirect to="/" />;
   return (
-    <div
-      style={{ backgroundImage: "url(images/booking.jpg" }}
-      className="text booking darken-pseudo darken-with-text"
-    >
+    <div className="text booking darken-pseudo darken-with-text">
       <>
-        <Col md={{ span: 6, offset: 3 }} className="login">
+        <Col className="login">
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
               <h1 style={{ color: "red" }}>Sign In</h1>

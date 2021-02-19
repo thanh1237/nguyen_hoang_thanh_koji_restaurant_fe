@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import NotFoundPage from "../pages/NotFoundPage";
 import AdminPage from "../pages/admin/AdminPage";
 import PublicNavbar from "../components/PublicNavbar";
+import { Footer } from "../components/Footer";
 
 const AdminLayout = () => {
   return (
@@ -21,6 +22,7 @@ const AdminLayout = () => {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };

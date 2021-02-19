@@ -1,18 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import api from "../../apiService";
-import { Modal } from "react-bootstrap";
-import {
-  Col,
-  Button,
-  Nav,
-  Row,
-  Tab,
-  Tabs,
-  Card,
-  Image,
-  ListGroup,
-  Form,
-} from "react-bootstrap";
+import { Col, Nav, Row, Tab } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "../../redux/actions/auth.actions";
 import bookingActions from "../../redux/actions/booking.action";
@@ -28,7 +15,6 @@ export const AdminPage = () => {
     name: "",
     type: "",
     price: "",
-    fileInputState: "",
   });
   const dispatch = useDispatch();
   const bookingList = useSelector((state) => state.booking.booking);
@@ -45,55 +31,10 @@ export const AdminPage = () => {
   const [update, setUpdate] = useState(1);
   const [show, setShow] = useState(false);
   const inputFile = useRef(null);
-  const [previewSource, setPreviewSource] = useState("");
-
-  const [selectedFile, setSelectedFile] = useState("");
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
-  };
-
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    previewFile(file);
-  };
-
-  const uploadImage = async (base64EncodedImage) => {
-    console.log("huhu", base64EncodedImage);
-    try {
-      await api.post("/upload", JSON.stringify({ data: base64EncodedImage }));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleSubmitFile = (e) => {
-    e.preventDefault();
-    if (!previewSource) return;
-    uploadImage(previewSource);
-  };
 
   const handleClose = () => {
     setShow(false);
   };
-
-  const handleCloseAndCreate = (e) => {
-    setShow(false);
-    const { name, type, price, fileInputState } = formData;
-    dispatch(
-      menuActions.creatMenu(
-        formData.name,
-        formData.type,
-        formData.price,
-        formData.fileInputState
-      )
-    );
-  };
-  const handleShow = () => setShow(true);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -107,18 +48,18 @@ export const AdminPage = () => {
   };
 
   const handleConfirmBooking = (bookingId, tableId) => {
+    let comment = "";
     dispatch(bookingActions.deleteBooking(bookingId));
     dispatch(bookingActions.getListOfBooking());
-    dispatch(
-      authActions.updateTable(tableId, { comment: "" }, { status: "Booked" })
-    );
+    dispatch(authActions.updateTable(tableId, comment, { status: "Booked" }));
   };
 
   const handleDeleteBooking = (bookingId, tableId) => {
     dispatch(bookingActions.deleteBooking(bookingId));
     dispatch(bookingActions.getListOfBooking());
+    let comment = "";
     dispatch(
-      authActions.updateTable(tableId, { comment: "" }, { status: "Available" })
+      authActions.updateTable(tableId, comment, { status: "Available" })
     );
   };
   const handleChange = (e) => {
@@ -140,13 +81,13 @@ export const AdminPage = () => {
 
   const handleHeader = (e) => {
     e.preventDefault();
+
     setSelect(e.target.outerText);
   };
 
   const handleDeleteMenu = (e) => {
     e.preventDefault();
-    const currentDishId = editSelect._id;
-    dispatch(menuActions.deleteMenu(currentDishId));
+    dispatch(menuActions.deleteMenu(editSelect._id, editSelect.name));
     dispatch(menuActions.getMenuList());
     setEditSelect("");
   };
@@ -245,7 +186,7 @@ export const AdminPage = () => {
   useEffect(() => {
     dispatch(bookingActions.getListOfBooking());
     dispatch(menuActions.getMenuList());
-  }, [dispatch, editSelect, formData, select]);
+  }, [dispatch, editSelect, formData, select, show]);
 
   return (
     <div style={{ marginTop: "10%" }} className="text">
@@ -329,8 +270,8 @@ export const AdminPage = () => {
                 menu={menu}
                 menuSelect={menuSelect}
                 handleEdit={handleEdit}
-                handleShow={handleShow}
                 show={show}
+                setShow={setShow}
                 handleClose={handleClose}
                 formData={formData}
                 handleChange={handleChange}
@@ -340,12 +281,9 @@ export const AdminPage = () => {
                 bookingNotDelete={bookingNotDelete}
                 tableName={tableName}
                 comment={comment}
-                handleFileInputChange={handleFileInputChange}
                 fileInputState={formData.fileInputState}
-                previewSource={previewSource}
-                handleSubmitFile={handleSubmitFile}
                 handleDeleteMenu={handleDeleteMenu}
-                handleCloseAndCreate={handleCloseAndCreate}
+                setFormData={setFormData}
               />
             </Tab.Content>
           </Col>

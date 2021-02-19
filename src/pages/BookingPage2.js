@@ -44,13 +44,13 @@ export const BookingPage2 = () => {
     //if authenticated
     if (isAuthenticated && formData.tableId) {
       const { name, email, date, time, tableId, comment } = formData;
-      console.log("<<<<<<<<<<<<", formData);
       if (singleTable.status === "Pending") {
         setModal(2);
       } else {
         dispatch(
-          authActions.updateTable(tableId, date, comment, { status: "Pending" })
+          authActions.updateTable(tableId, comment, { status: "Pending" })
         );
+        authActions.getTable();
         dispatch(bookingActions.createBooking(tableId, currentUserId));
         setModal(1);
       }
@@ -82,12 +82,14 @@ export const BookingPage2 = () => {
       setBooking(1);
       setFormData({
         ...formData,
-
         tableId: "",
         time: "",
       });
     }
   };
+
+  let d = new Date();
+  let n = d.toISOString().split("T");
 
   const handleTime = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value, tableId: "" });
@@ -100,8 +102,6 @@ export const BookingPage2 = () => {
 
   useEffect(() => {
     dispatch(authActions.getTable());
-    console.log("ASDasdasdasda", singleTable);
-    console.log(">>>>>>>>>>>>", formData);
   }, [dispatch, formData, newTables]);
   return (
     <div
@@ -116,7 +116,7 @@ export const BookingPage2 = () => {
               <h4>Choose table type</h4>
             </center>
           </div>
-          <div className="tableList">
+          <div className="table-list">
             {newTables &&
               newTables
                 .filter((table) => {
@@ -154,7 +154,7 @@ export const BookingPage2 = () => {
                           xmlns="images/table_2.png"
                         >
                           <image
-                            href="images/table_2.png"
+                            href="https://res.cloudinary.com/dopdu3ttp/image/upload/c_crop,h_128,w_128/v1612343365/table_2_ykidp6.png"
                             height="100%"
                             width="100%"
                           />
@@ -167,7 +167,7 @@ export const BookingPage2 = () => {
                           xmlns="images/table_4.png"
                         >
                           <image
-                            href="images/table_4.png"
+                            href="https://res.cloudinary.com/dopdu3ttp/image/upload/c_crop,h_128,w_135/v1612343380/table_4_alufqr.png"
                             height="100%"
                             width="100%"
                           />
@@ -179,7 +179,7 @@ export const BookingPage2 = () => {
                           xmlns="images/table_6.png"
                         >
                           <image
-                            href="images/table_6.png"
+                            href="https://res.cloudinary.com/dopdu3ttp/image/upload/c_crop,h_128,w_180/v1612343390/table_6_rowrvn.png"
                             height="100%"
                             width="100%"
                           />
@@ -191,7 +191,7 @@ export const BookingPage2 = () => {
                           xmlns="images/table_8.png"
                         >
                           <image
-                            href="images/table_8.png"
+                            href="https://res.cloudinary.com/dopdu3ttp/image/upload/v1612343401/table_8_mncvrh.png"
                             height="100%"
                             width="100%"
                           />
@@ -258,6 +258,7 @@ export const BookingPage2 = () => {
                   value={formData.date}
                   name="date"
                   onChange={handleChange}
+                  min={`${n[0]}`}
                 ></Form.Control>
               ) : (
                 <Form.Control
@@ -382,12 +383,12 @@ export const BookingPage2 = () => {
                 style={{
                   fontSize: "50%",
                   color: "white",
-                  backgroundColor: "#ffcc99",
+                  backgroundColor: "#b32d00",
                   width: "40%",
                   height: "20%",
                 }}
               >
-                Reserver A Table
+                Reserve a Table
               </button>
 
               <Modal show={show} onHide={handleClose}>
@@ -429,7 +430,7 @@ export const BookingPage2 = () => {
               fontSize: "50%",
               color: "white",
               backgroundColor: "#ffcc99",
-              width: "40%",
+              width: "45%",
               height: "10%",
             }}
             onClick={handleConfirmDate}

@@ -7,7 +7,6 @@ import HomePage from "../pages/HomePage";
 const UserLayout = () => {
   return (
     <>
-      {/* <PublicNavbar /> */}
       <Container fluid>
         <Row>
           <Col md={9} lg={10}>

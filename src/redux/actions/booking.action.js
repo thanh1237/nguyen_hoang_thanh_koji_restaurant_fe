@@ -1,5 +1,6 @@
 import * as types from "../constants/booking.constants";
 import api from "../../apiService";
+import { toast } from "react-toastify";
 
 const createBooking = (tableId, user) => async (dispatch) => {
   dispatch({ type: types.CREATE_BOOKING_REQUEST, payload: null });
@@ -34,6 +35,7 @@ const deleteBooking = (bookingId) => async (dispatch) => {
       type: types.DELETE_BOOKING_SUCCESS,
       payload: res.data.data,
     });
+    toast.success(`Update table success`);
   } catch (error) {
     console.log(error);
     dispatch({ type: types.DELETE_BOOKING_FAILURE, payload: error });

@@ -1,15 +1,15 @@
-import React from "react";
-import { FormControl } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import menuActions from "../../redux/actions/menu.actions";
 
 export const Footer = ({
   select,
   menu,
   menuSelect,
   handleEdit,
-  handleShow,
   show,
   handleClose,
   formData,
@@ -20,15 +20,27 @@ export const Footer = ({
   bookingNotDelete,
   tableName,
   comment,
-  inputFile,
-  handleFileInputChange,
-  fileInputState,
-
-  previewSource,
-  handleSubmitFile,
+  setShow,
   handleDeleteMenu,
-  handleCloseAndCreate,
+  setFormData,
 }) => {
+  const dispatch = useDispatch();
+  const [image, setImage] = useState("");
+  const uploadedImage = useSelector((state) => state.menu.image);
+  const handleShow = () => {
+    setShow(true);
+    setFormData({ name: "", type: "", price: "" });
+  };
+
+  // alert !!!! have to use FormData
+
+  const handleCloseAndCreate = async (e) => {
+    const { name, type, price } = formData;
+    e.preventDefault();
+    dispatch(menuActions.uploadImageAndCreate(image, name, type, price));
+    handleClose();
+  };
+  useEffect(() => {}, [dispatch, image, uploadedImage, menu.length]);
   return select && select === "Menu" ? (
     <footer
       className="footer"
@@ -47,7 +59,7 @@ export const Footer = ({
           <div className="adminBookingFooter">{`${menuSelect}`}</div>
         )}
         {menuSelect ? (
-          <div className="adminBookingFooter">
+          <div className="adminBookingFooter" style={{ width: "20%" }}>
             <Button
               style={{ padding: "1px" }}
               variant="outline-danger"
@@ -63,14 +75,55 @@ export const Footer = ({
               Add Item
             </Button>
             <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Header className="backModal text" closeButton>
+                <Modal.Title>Add New Item</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
-                Woohoo, you're reading this text in a modal!
+              <Modal.Body className="backModal text">
+                <Form className="editCol2 ">
+                  <div>
+                    <h5>Dish Name</h5>
+                    <Form.Control
+                      className="formList"
+                      name="name"
+                      type="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <h5>Type</h5>{" "}
+                    <Form.Control
+                      className="formList"
+                      as="select"
+                      name="type"
+                      value={formData.type}
+                      onChange={handleChange}
+                    >
+                      <option>Choose Type</option>
+                      <option>Drink</option>
+                      <option>Food</option>
+                    </Form.Control>
+                  </div>
+                  <div>
+                    <h5>Price</h5>
+                    <Form.Control
+                      className="formList"
+                      name="price"
+                      type="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                    />
+
+                    <Form.Control
+                      name="image"
+                      type="file"
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
+                  </div>
+                </Form>
               </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseAndCreate}>
+              <Modal.Footer className="backModal text">
+                <Button variant="primary" onClick={handleCloseAndCreate}>
                   Add
                 </Button>
               </Modal.Footer>
@@ -92,13 +145,13 @@ export const Footer = ({
             >
               Add Item
             </Button>
-            {/* TODO */}
+
             <Modal show={show} onHide={handleClose}>
               <Modal.Header className="backModal text" closeButton>
                 <Modal.Title>Add New Item</Modal.Title>
               </Modal.Header>
               <Modal.Body className="backModal text">
-                <Form onSubmit={handleSubmitFile} className="editCol2 ">
+                <Form className="editCol2 ">
                   <div>
                     <h5>Dish Name</h5>
                     <Form.Control
@@ -118,6 +171,7 @@ export const Footer = ({
                       value={formData.type}
                       onChange={handleChange}
                     >
+                      <option>Choose Type</option>
                       <option>Drink</option>
                       <option>Food</option>
                     </Form.Control>
@@ -131,25 +185,12 @@ export const Footer = ({
                       value={formData.price}
                       onChange={handleChange}
                     />
-                    {/* TODO */}
                     <Form.Control
                       name="image"
                       type="file"
-                      value={fileInputState}
-                      onChange={handleFileInputChange}
+                      onChange={(e) => setImage(e.target.files[0])}
                     />
-
-                    {previewSource && (
-                      <>
-                        <img
-                          src={previewSource}
-                          alt="chosen"
-                          style={{ width: "20vw" }}
-                        />
-                      </>
-                    )}
                   </div>
-                  <button type="submit">submit</button>
                 </Form>
               </Modal.Body>
               <Modal.Footer className="backModal text">
@@ -187,7 +228,7 @@ export const Footer = ({
       ) : update === 2 ? (
         <center className="adminFooter">
           <div className="adminBookingFooter">
-            <span>Not thing change </span>
+            <span>Nothing change </span>
             <Button
               style={{ marginLeft: "1vw" }}
               onClick={handleReEdit}

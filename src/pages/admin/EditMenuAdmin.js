@@ -10,7 +10,7 @@ export const EditMenuAdmin = ({ formData, handleChange, editSelect }) => {
           {editSelect ? (
             <Image
               style={{ height: "35vh" }}
-              src={`${process.env.REACT_APP_BACKEND_API}/images/${editSelect.image}`}
+              src={editSelect.image}
               thumbnail
             />
           ) : (

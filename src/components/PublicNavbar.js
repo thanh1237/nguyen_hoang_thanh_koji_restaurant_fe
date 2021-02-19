@@ -14,6 +14,7 @@ const PublicNavbar = () => {
   const history = useHistory();
 
   const location = useLocation();
+  const scroll = useSelector((state) => state.scroll.scroll);
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -78,22 +79,12 @@ const PublicNavbar = () => {
     </Nav>
   );
 
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("nav").style.top = "0";
-    } else {
-      document.getElementById("nav").style.top = "-100px";
-    }
-    prevScrollpos = currentScrollPos;
-  };
-
   return (
     <Navbar
       expand="lg"
       style={{ backgroundImage: `url(images/top-menu-bg.jpg)` }}
       id="nav"
+      className={scroll ? "navUp" : "navDown"}
     >
       <Navbar.Brand as={Link} to="/" className="mr-auto">
         <img src={logo} alt="CoderSchool" width="200px" />

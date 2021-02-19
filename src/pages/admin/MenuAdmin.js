@@ -21,10 +21,7 @@ export const MenuAdmin = ({ menu, handleMenu, menuSelect }) => {
                           menuSelect === dish.name ? "cardSelect" : "card"
                         }`}
                       >
-                        <Card.Img
-                          variant="top"
-                          src={`${process.env.REACT_APP_BACKEND_API}/images/${dish.image}`}
-                        />
+                        <Card.Img variant="top" src={dish.image} />
                         <Card.Body>
                           <Card.Title>{`${dish.name}`}</Card.Title>
                           <Card.Text className="price">
@@ -52,10 +49,7 @@ export const MenuAdmin = ({ menu, handleMenu, menuSelect }) => {
                         }`}
                         onClick={() => handleMenu(dish.name)}
                       >
-                        <Card.Img
-                          variant="top"
-                          src={`${process.env.REACT_APP_BACKEND_API}/images/${dish.image}`}
-                        />
+                        <Card.Img variant="top" src={dish.image} />
                         <Card.Body>
                           <Card.Title>{`${dish.name}`}</Card.Title>
                           <Card.Text className="price">

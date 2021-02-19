@@ -2,12 +2,14 @@ import * as types from "../constants/auth.constants";
 import api from "../../apiService";
 import { toast } from "react-toastify";
 import routeActions from "./route.actions";
+import Axios from "axios";
 
 const loginRequest = ({ email, password }) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
   try {
     const res = await api.post("/auth/login", { email, password });
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.data });
+    toast.success(`Welcome ${email}`);
   } catch (error) {
     console.log(error);
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -44,6 +46,7 @@ const register = ({
   name,
   email,
   password,
+
   redirectTo = "__GO_BACK__",
 }) => async (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST, payload: null });
@@ -114,12 +117,10 @@ const getCurrentTable = (tableId) => async (dispatch) => {
   }
 };
 
-const updateTable = (tableId, date, comment, { status }) => async (
-  dispatch
-) => {
+const updateTable = (tableId, comment, status) => async (dispatch) => {
   dispatch({ type: types.UPDATE_TABLE_REQUEST, payload: null });
   try {
-    const body = { date, comment, status };
+    const body = { comment, status };
     const res = await api.put(`/table/${tableId}`, body);
     dispatch({
       type: types.UPDATE_TABLE_SUCCESS,

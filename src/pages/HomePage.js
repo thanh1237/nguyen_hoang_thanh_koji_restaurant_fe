@@ -1,8 +1,9 @@
 import React from "react";
 import { FullPage, Slide } from "react-full-page";
-import StoryPage from "./StoryPage";
+import StoryPage2 from "./StoryPage2";
 import BookingPage2 from "./BookingPage2";
-import MenuPage from "./MenuPage";
+
+import MenuPage2 from "./MenuPage2";
 
 const HomePage = () => {
   return (
@@ -50,11 +51,12 @@ const HomePage = () => {
           alt="home"
         />
       </Slide>
+
       <Slide>
-        <StoryPage />
+        <StoryPage2 />
       </Slide>
       <Slide>
-        <MenuPage />
+        <MenuPage2 />
       </Slide>
       <Slide>
         <BookingPage2 />

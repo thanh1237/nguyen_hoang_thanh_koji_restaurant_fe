@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import authActions from "../redux/actions/auth.actions";
 import routeActions from "../redux/actions/route.actions";
@@ -18,6 +18,7 @@ const RegisterPage = () => {
     password: "",
     password2: "",
   });
+  const [image, setImage] = useState("");
   const loading = useSelector((state) => state.auth.loading);
   const redirectTo = useSelector((state) => state.route.redirectTo);
   const history = useHistory();
@@ -51,7 +52,7 @@ const RegisterPage = () => {
   return (
     <div style={{ marginTop: "10%" }}>
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col className="login">
           <div className="text-center mb-3">
             <h1 style={{ color: "red" }}>Sign Up</h1>
             <p className="lead" style={{ color: "white" }}>
