@@ -65,9 +65,6 @@ const PublicNavbar = () => {
           <Nav.Link as={Link} smooth to="#booking">
             Reserve
           </Nav.Link>
-          <Nav.Link as={Link} smooth to="#career">
-            Career
-          </Nav.Link>
         </>
       )}
       <Nav.Link as={Link} to="/register">
