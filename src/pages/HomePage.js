@@ -28,7 +28,7 @@ const HomePage = () => {
               ></div>
               <h4>DINNER</h4>
               <p>Mon - Sun:</p>
-              <p style={{ color: "red" }}>6PM - 11PM</p>
+              <p style={{ color: "red" }}>6PM - Midnight</p>
 
               <div
                 className="divider"

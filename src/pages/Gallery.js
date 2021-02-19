@@ -42,7 +42,7 @@ export const Gallery = () => {
             </div>
           </div>
           <br />
-          <div>𝐎𝐏𝐄𝐍: 11:30am - 2:00pm and 5:00pm - 12:00am</div>
+          <div>𝐎𝐏𝐄𝐍: 11:30am - 2:00pm and 5:00pm - Midnight</div>
           <div>
             <a
               style={{ textDecoration: "none", color: "white" }}
