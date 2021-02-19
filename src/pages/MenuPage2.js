@@ -20,7 +20,7 @@ export const MenuPage2 = () => {
   };
 
   return (
-    <div className="menuC">
+    <div id="menu" className="menuC">
       <div className="menuNav">
         <h3 onClick={handleChangeFood} className="textMenu">
           FOOD

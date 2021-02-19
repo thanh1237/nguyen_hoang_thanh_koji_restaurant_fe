@@ -569,6 +569,10 @@ button {
   overflow-y: scroll;
 }
 
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -815,6 +819,10 @@ button {
   flex-direction: column;
   overflow: hidden;
   overflow-y: scroll;
+}
+
+.item-content-2::-webkit-scrollbar {
+  display: none;
 }
 
 .content-item {
