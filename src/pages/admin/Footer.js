@@ -255,18 +255,22 @@ export const Footer = ({
       <center className="adminFooter">
         <div className="adminBookingFooter">
           Total Booking:{" "}
-          <span style={{ color: "#e6b800" }}>{`${
+          <span style={{ color: "#e6b800", marginLeft: "2px" }}>{`${
             bookingNotDelete && bookingNotDelete.length
           }`}</span>
         </div>
         <div className="adminBookingFooter">
           Table:
-          <span style={{ color: "#e6b800" }}>{`${tableName}`}</span>
+          <span
+            style={{ color: "#e6b800", marginLeft: "2px" }}
+          >{`${tableName}`}</span>
         </div>
         <div className="adminBookingFooter">
           {" "}
           Comments:
-          <span style={{ color: "#e6b800" }}>{`${comment}`}</span>
+          <span
+            style={{ color: "#e6b800", marginLeft: "2px" }}
+          >{`${comment}`}</span>
         </div>
       </center>
     </footer>

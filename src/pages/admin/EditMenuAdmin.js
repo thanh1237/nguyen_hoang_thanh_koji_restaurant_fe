@@ -17,7 +17,7 @@ export const EditMenuAdmin = ({ formData, handleChange, editSelect }) => {
             <h3>Please select item that you want to edit from Menu</h3>
           )}
         </Col>
-        <Col md={8} style={{ height: "100%" }}>
+        <Col md={7} style={{ height: "100%" }}>
           {editSelect ? (
             <Form className="editCol2 ">
               <div>

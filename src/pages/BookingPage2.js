@@ -107,7 +107,7 @@ export const BookingPage2 = () => {
     <div
       className="booking darken-pseudo darken-with-text"
       id="booking"
-      style={{ backgroundImage: "url(images/booking2.jpg)" }}
+      style={{ backgroundImage: "url(images/booking3.jpg)" }}
     >
       {formData.time ? (
         <div className="tables fade-in">
@@ -408,7 +408,7 @@ export const BookingPage2 = () => {
                 ) : modal === 2 ? (
                   <Modal.Body className="backModal text">
                     Sorry, you can only book table at one time only. If you want
-                    to change your decision, fell free to contact us. Thank you.
+                    to change your decision, feel free to contact us. Thank you.
                   </Modal.Body>
                 ) : (
                   <Modal.Body className="backModal text">
