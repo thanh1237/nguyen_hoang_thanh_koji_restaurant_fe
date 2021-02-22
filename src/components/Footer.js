@@ -14,11 +14,11 @@ export const Footer = () => {
     >
       <footer>
         &copy; Copyright 2021{" "}
-        <a style={{ color: "white", textDecoration: "none" }} href="#">
+        <a style={{ color: "white", textDecoration: "none" }} href="#top">
           Koji restaurant
         </a>{" "}
         |
-        <a style={{ color: "white", textDecoration: "none" }} href="#">
+        <a style={{ color: "white", textDecoration: "none" }} href="#top">
           {" "}
           Private Policy
         </a>

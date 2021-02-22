@@ -6,7 +6,7 @@ import MenuPage2 from "./MenuPage2";
 const HomePage = () => {
   return (
     <FullPage>
-      <Slide id="main">
+      <Slide id="main top">
         <div className="open ">
           <div id="row">
             <div className="aside text fade-in">
