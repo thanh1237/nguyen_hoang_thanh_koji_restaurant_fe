@@ -18,7 +18,6 @@ const RegisterPage = () => {
     password: "",
     password2: "",
   });
-  const [image, setImage] = useState("");
   const loading = useSelector((state) => state.auth.loading);
   const redirectTo = useSelector((state) => state.route.redirectTo);
   const history = useHistory();

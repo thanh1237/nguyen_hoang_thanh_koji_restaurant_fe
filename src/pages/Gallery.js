@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import userActions from "../redux/actions/user.actions";
 import menuActions from "../redux/actions/menu.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Image } from "react-bootstrap";
+
 import { useHistory } from "react-router-dom";
 
 export const Gallery = () => {
@@ -48,6 +48,7 @@ export const Gallery = () => {
               style={{ textDecoration: "none", color: "white" }}
               href="https://www.facebook.com/profile.php?id=100012152715341"
               target="_blank"
+              rel="noreferrer"
             >
               {" "}
               @thanhlaaiiiii{" "}
@@ -56,6 +57,7 @@ export const Gallery = () => {
               style={{ textDecoration: "none", color: "white" }}
               href="https://www.facebook.com/ngathuydao165"
               target="_blank"
+              rel="noreferrer"
             >
               | @xucxich.trunglongdao
             </a>
@@ -83,6 +85,7 @@ export const Gallery = () => {
                   <img
                     className="img-fluid product-img"
                     src={`${item.image}`}
+                    alt="product"
                   />
                   <div
                     className="overlay"

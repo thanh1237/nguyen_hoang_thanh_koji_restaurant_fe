@@ -1,8 +1,6 @@
-import React from "react";
 import { FullPage, Slide } from "react-full-page";
 import StoryPage2 from "./StoryPage2";
 import BookingPage2 from "./BookingPage2";
-
 import MenuPage2 from "./MenuPage2";
 
 const HomePage = () => {
@@ -51,7 +49,6 @@ const HomePage = () => {
           alt="home"
         />
       </Slide>
-
       <Slide>
         <StoryPage2 />
       </Slide>

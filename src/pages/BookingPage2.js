@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "../redux/actions/auth.actions";
 import bookingActions from "../redux/actions/booking.action";
@@ -7,14 +7,6 @@ import LoginPage from "./LoginPage";
 
 export const BookingPage2 = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    date: "",
-    time: "",
-    tableId: "",
-    comment: "",
-  });
-  const [errors, setErrors] = useState({
     name: "",
     email: "",
     date: "",
@@ -43,7 +35,7 @@ export const BookingPage2 = () => {
 
     //if authenticated
     if (isAuthenticated && formData.tableId) {
-      const { name, email, date, time, tableId, comment } = formData;
+      const { tableId, comment } = formData;
       if (singleTable.status === "Pending") {
         setModal(2);
       } else {
@@ -65,7 +57,7 @@ export const BookingPage2 = () => {
 
   const handleGetTable = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    const { name, email, date, time, tableId, comment } = formData;
+    const { tableId } = formData;
     dispatch(authActions.getCurrentTable(tableId));
   };
 

@@ -16,7 +16,6 @@ export const ItemDetail = () => {
   const reaction = useSelector((state) => state.menu.reaction);
   const currentUser = useSelector((state) => state.auth.user._id);
   const review = useSelector((state) => state.review.review.reviews);
-  const [dropDown, setDropDown] = useState(false);
 
   const [formData, setFormData] = useState({
     content: "",
@@ -42,15 +41,6 @@ export const ItemDetail = () => {
     dispatch(reviewActions.createReview(params.id, content));
     dispatch(reviewActions.getReview(params.id));
     setFormData({ content: "" });
-  };
-
-  const handleEdit = (e) => {
-    e.preventDefault();
-    if (dropDown === false) {
-      setDropDown(true);
-    } else {
-      setDropDown(false);
-    }
   };
 
   useEffect(() => {

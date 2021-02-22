@@ -1,7 +1,5 @@
 import * as types from "../constants/review.constants";
 import api from "../../apiService";
-import { toast } from "react-toastify";
-import routeActions from "./route.actions";
 
 const getReview = (id) => async (dispatch) => {
   dispatch({ type: types.GET_REVIEW_REQUEST, payload: null });

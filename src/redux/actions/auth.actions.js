@@ -2,7 +2,6 @@ import * as types from "../constants/auth.constants";
 import api from "../../apiService";
 import { toast } from "react-toastify";
 import routeActions from "./route.actions";
-import Axios from "axios";
 
 const loginRequest = ({ email, password }) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
